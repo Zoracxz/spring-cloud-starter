@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: spring-cloud-eureka
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    #声明自己是个服务器
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  #自我保护模式禁止关闭
+  #server:
+    #enable-self-preservation: false
+
+#三个配置写再同一个文件的写法
+
+#---
+#spring:
+#  application:
+#    name: spring-cloud-eureka
+#  profiles: peer1
+#server:
+#  port: 8000
+#eureka:
+#  instance:
+#    hostname: peer1
+#  client:
+#    serviceUrl:
+#      defaultZone: http://peer2:8001/eureka/,http://peer3:8002/eureka/
+#---
+#spring:
+#  application:
+#    name: spring-cloud-eureka
+#  profiles: peer2
+#server:
+#  port: 8001
+#eureka:
+#  instance:
+#    hostname: peer2
+#  client:
+#    serviceUrl:
+#      defaultZone: http://peer1:8000/eureka/,http://peer3:8002/eureka/
+#---
+#spring:
+#  application:
+#    name: spring-cloud-eureka
+#  profiles: peer3
+#server:
+#  port: 8002
+#eureka:
+#  instance:
+#    hostname: peer3
+#  client:
+#    serviceUrl:
+#      defaultZone: http://peer1:8000/eureka/,http://peer2:8001/eureka/

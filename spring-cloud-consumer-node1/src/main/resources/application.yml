@@ -1,0 +1,17 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: node01
+feign:
+  hystrix:
+    enabled: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
